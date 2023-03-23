@@ -1,0 +1,46 @@
+<% if user_signed_in? %> 
+<div class="h-screen w-screen bg-gray-100 flex justify-around items-center">
+
+<div class="w-1/2 flex items-center justify-center h-full flex-col">
+
+
+<div class="flex border border-black w-48 h-10 items-center justify-center m-8 rounded-md bg-white hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white"><%= link_to "Edit Profile", edit_user_registration_path %></div> 
+
+
+</div>
+
+<div class="w-1/2 flex flex-col">
+  <div class=" font-bold text-5xl m-2"> <%= current_user.email %> </div> 
+
+  <div class=" text-xl flex m-3"> 
+
+
+
+<%# I will add Font Awesome icons here. This is a temporary location icon %>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+</svg>
+
+
+<%# User Address %>
+
+
+
+<%# Hard coded values for age and bio. I will finish this part %>
+  <p class="font-bold text-2xl mt-8">Age 73</p>
+  <p class="font-semibold">Novel Prize Winner (X2) in Chemistry</p>
+
+ 
+
+
+  
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete ,class:"flex border border-black w-48 h-10 rounded-md bg-white hover:scale-90 duration-300 hover:bg-red-600 hover:text-white flex items-center justify-center mt-10" %> 
+</div>
+
+</div>
+
+
+<%# redirect to signin page if no user is logged in %>
+<% else %>
+<% controller.redirect_to new_user_session_path %>
+<% end %>

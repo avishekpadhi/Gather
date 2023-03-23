@@ -1,0 +1,81 @@
+<% if current_user.following?(@user)%>
+    <%= button_to "Unfollow",unfollow_path(@user)%>
+<% elsif current_user.sent_follow_request_to?(@user)%>
+    <%= button_to "Cancel Follow Request",cancel_path(@user)%>
+<% else %>
+    <%= button_to "Follow",follow_path(@user)%>
+<% end %>
+
+
+<% current_user.follow_requests.each do |request|%>
+    <%=request.followerable.email%>wants to follow you
+    <%= button_to "Accept",accept_path(request.followerable)%>
+    <%= button_to "Decline",decline_path(request.followerable)
+
+<% end %>
+
+
+
+  post 'users/:id/follow', to:"users#follow", as: "follow"
+  post 'users/:id/unfollow', to:"users#unfollow", as: "unfollow"
+  post 'users/:id/accept', to:"users#accept", as: "accept"
+  post 'users/:id/decline', to:"users#decline", as: "decline" 
+  post 'users/:id/cancel', to:"users#cancel", as: "cancel"
+
+
+
+def current_user_home
+    if user_signed_in? 
+      redirect_to current_user
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  def follow
+    current_user.send_follow_request_to(@user)
+    redirect_to user_path(@user)
+  end
+
+  def unfollow
+    make_it_a_unfriend_request
+    current_user.unfollow(@user)
+    redirect_to user_path(@user)
+  end
+
+  def accept
+    current_user.accept_follow_request_of(@user)
+    make_it_a_friend_request
+    
+    redirect_to root_path
+  end
+
+  def decline
+    current_user.decline_follow_request_of(@user)
+    redirect_to root_path
+  end
+
+  def cancel
+    current_user.remove_follow_request_for(@user)
+    redirect_to root_path
+  end
+
+
+
+
+  private
+
+  def set_user
+    @user=User.find(params[:id])
+  end
+
+  def make_it_a_unfriend_request
+    @user.unfollow(current_user) if @user.mutual_following_with?(current_user)
+  end
+
+  def make_it_a_friend_request
+    current_user.send_follow_request_to(@user)
+    @user.accept_follow_request_of(current_user)
+  end
+
+end
