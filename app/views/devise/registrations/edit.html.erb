@@ -11,7 +11,9 @@
     <%# <%= image_tag(current_user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full rounded-full");%> 
     
 <% else%>
+<%= link_to root_path do %>
     <%= image_tag "account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full rounded-full";%>
+    <% end %>
 <% end %>
 
 </div>
@@ -32,6 +34,8 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  
+
 <div class="flex ">
   <div class="field mr-5">
     <%= f.label :password,class:"font-semibold" %> <i></i><br />
@@ -44,11 +48,13 @@
  
 
   <div class="field">
-    <%= f.label :password_confirmation,class:"font-semibold" %><br />
+    <%= f.label :password_confirmation,class:"font-semibold" %><br/>
     <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"border border-black hover:border-blue-600" %>
   </div>
 
 </div>
+
+
 
   <div class="field  mt-2 ">
     <%= f.label :bio,class:"font-semibold" %> <i class="font-semibold"> (Confirm Changes)</i><br />
@@ -60,7 +66,17 @@
     <%= f.label :Upload_an_Image,class:"font-semibold " %><br />
     <%= f.file_field :image ,class:" hover:scale-90 duration-300 hover:border-blue-600"%>
   </div>
-
+  <div class="flex w-1/2">
+<div class="field my-3 w-1/2">
+    <%= f.label :state %><br />
+    <%= f.select :state, options_for_select(states),class:"border border-black w-3/4 bg-red-200" %>
+  </div>
+  <div class="field my-3 w-1/2 ml-2">
+    <%= f.label :city %><br />
+    <%= f.select :city, options_for_select(cities),class:"border border-black w-3/4 bg-red-200" %>
+  </div>
+  
+</div>
 
 
   <div class="field">

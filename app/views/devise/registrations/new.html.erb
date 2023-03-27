@@ -22,29 +22,25 @@
     <%= f.text_field :contact_number, autofocus: true, autocomplete: "contact_number",class:"border border-black w-3/4" %>
   </div>
 
-  <div class="field my-3">
-    <%= f.label :state %><br />
-    <%= f.text_field :state, autofocus: true, autocomplete: "state",class:"border border-black w-3/4" %>
-  </div>
-</div>
-
-<div class="flex">
-  <div class="field my-3">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autofocus: true, autocomplete: "city",class:"border border-black w-3/4" %>
-  </div>
-
-  <div class="field my-3">
-    <%= f.label :area %><br />
-    <%= f.text_field :area, autofocus: true, autocomplete: "location",class:"border border-black w-3/4" %>
-  </div>
-</div>
+  
 
   <div class="field my-3">
     <%= f.label :date_of_birth %><br />
     <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth" %>
   </div>
+</div>
 
+<div class="flex">
+<div class="field my-3 w-1/2">
+    <%= f.label :state %><br />
+    <%= f.select :state, options_for_select(states),class:"border border-black w-3/4 bg-red-200" %>
+  </div>
+  <div class="field my-3 w-1/2 ml-2">
+    <%= f.label :city %><br />
+    <%= f.select :city, options_for_select(cities),class:"border border-black w-3/4 bg-red-200" %>
+  </div>
+  
+</div>
 
 
   
