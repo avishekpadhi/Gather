@@ -1,7 +1,7 @@
 module CityHelper
     def cities
         [
-          ['Bengaluru'],
+          ['Visakhapatnam'],
           ['Mumbai'],
           ['Chennai'],
           ['Hyderabad'],
@@ -29,7 +29,7 @@ module CityHelper
           ['Shimla'],
           ['Chandigarh'],
           ['Delhi'],
-          ['Visakhapatnam'],
+          ['Bengaluru'],
           ['Nagpur'],
           ['Patna'],
           ['Ahmedabad'],
