@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
          validates :contact_number, presence: true, format: { with: /\A\+91\d{10}\z/, message: "must be a Indian phone number" }
 
+
+         has_many :interests
+
          
 
          followability

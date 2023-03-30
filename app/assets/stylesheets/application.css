@@ -37,3 +37,11 @@
 #user_state{
     padding-left: 10px;
 }
+#interest_experience{
+    padding-left: 10px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
+

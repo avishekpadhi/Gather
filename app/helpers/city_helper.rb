@@ -74,4 +74,15 @@ module CityHelper
      
       ]
   end
+
+  def experienceoptions
+    [
+      ['Amateur'],
+      ['Beginner'],
+      ['Intermediate'],
+      ['Advanced'],
+      
+   
+    ]
+end
 end
