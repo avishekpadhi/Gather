@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'profiles#search'
   resources :interests
   
   devise_for :users,controllers: {

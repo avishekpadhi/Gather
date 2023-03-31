@@ -1,0 +1,35 @@
+<div class="items-center  justify-between flex w-screen">
+
+  <div class="items-center justify-between flex  w-screen">
+    <% @users.each do |user|%>
+         
+      <div class="flex w-1/2 border border-black items-center mt-5 mx-auto rounded-md justify-between">
+
+      <div class="flex"><% if user.image.attached? %>
+            <div class="flex w-32 h-32 p-4  rounded-full"> <%= image_tag(user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full");%>
+      </div><% end %>
+      <h1 class="font-bold ml-10 my-auto"><%= user.name %></h1>
+      
+
+      </div>
+
+  
+      
+      <% if current_user.following?(user)%>
+          <%= button_to "Unfriend",unfollow_path(user),class:"flex border  w-28 h-7 mr-20 my-auto rounded bg-black text-white text-xs hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white flex items-center justify-center"%>
+      <% elsif current_user.sent_follow_request_to?(user)%>
+          <%= button_to "Cancel Friend Request",cancel_path(user),class:"flex border  w-40 h-7 mr-20 my-auto rounded bg-black text-white text-xs hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white flex items-center justify-center"%>
+      <% else %>
+          <%= button_to "Add Friend",follow_path(user),class:"flex border  w-28 h-7 mr-20 my-auto rounded bg-black text-white text-xs hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white flex items-center justify-center"%>
+      <% end %>
+           
+
+      </div>
+
+
+  <% end %>
+</div>
+
+
+
+</div>
