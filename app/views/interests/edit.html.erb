@@ -1,8 +1,16 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing interest</h1>
+<div class="mx-auto md:w-2/3 w-full h-screen my-auto mt-20">
+  <h1 class="font-bold text-4xl">Edit interest</h1>
 
   <%= render "form", interest: @interest %>
 
-  <%= link_to "Show this interest", @interest, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to interests", interests_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Show this interest", @interest, class: "ml-2 rounded-lg px-3 py-2 bg-gray-100 border border-black inline-block font-medium hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white" %>
+  <%= link_to "Add Interest", new_interest_path, class: "ml-2 rounded-lg px-3 py-2 bg-gray-100 border border-black inline-block font-medium hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white" %>
 </div>
+
+
+
+  <%= render "form", interest: @interest %>
+
+  <%= link_to 'Back to Profile', root_path, class: "ml-2 rounded-lg py-3 px-5 border border-black bg-gray-100 inline-block font-medium hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white" %>
+</div>
+

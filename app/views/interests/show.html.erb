@@ -6,10 +6,10 @@
 
     <%= render @interest %>
 
-    <%= link_to 'Edit this interest', edit_interest_path(@interest), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this interest', edit_interest_path(@interest), class: "mt-2 rounded-lg px-3 py-2 bg-gray-100 inline-block font-medium hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this interest', interest_path(@interest), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to 'Destroy this interest', interest_path(@interest), method: :delete, class: "mt-2 rounded-lg px-3 py-2 bg-gray-100 font-medium hover:scale-90 duration-300 hover:bg-red-600 hover:text-white" %>
     </div>
-    <%= link_to 'Back to interests', interests_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Back to Profile', root_path, class: "ml-2 rounded-lg py-2 px-3 bg-gray-100 inline-block font-medium hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white" %>
   </div>
 </div>

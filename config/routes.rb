@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'search', to: 'profiles#search'
+  get '/followrequests', to: 'profiles#followrequests'
   resources :interests
   
   devise_for :users,controllers: {

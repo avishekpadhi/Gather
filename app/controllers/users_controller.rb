@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     current_user.accept_follow_request_of(@user)
     make_it_a_friend_request
     
-    redirect_to root_path
+    redirect_to user_path(@user)
   end
 
   def decline
