@@ -2,19 +2,30 @@
 
     <div class="w-screen h-screen items-center justify-center">
 
+
+    <% if @current.any? %>
+  
+
+
             <% @current.each do |request|%>
+
+            
+
+            
 
                 <div class="mx-auto border border-black w-1/2 flex items-center justify-between mt-5 rounded-md">
                 
-                <%= link_to root_path do %>
+                
                 <div class="flex w-32 h-32 p-4  rounded-full">
+                
                     <% if request.followerable.image.attached? %>
-                        <%= image_tag(request.followerable.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full");%>
+                        <%=link_to image_tag(request.followerable.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(request.followerable.id);%> 
                     <% else%>
-                        <%= image_tag "account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full";%>
+                        <%=link_to  image_tag("account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(request.followerable.id);%>
                     <% end %>
+                
                 </div>
-                <% end %>
+                
 
                 <p><span class="font-bold"><%=request.followerable.name%></span> wants to connect</p>
                 <div class="flex">
@@ -22,8 +33,18 @@
                     <%= button_to "Decline",decline_path(request.followerable),class:"mr-5 ml-3 border border-black px-3 py-2 rounded hover:bg-red-600 hover:scale-90 duration-200 hover:text-white"%>
                 </div>
                 </div>
+            
+
+            
 
             <% end %>
+
+    <% else%>
+                 
+            <div class="text-center mt-10"> No Pending Friend Requests !</div>
+            
+    <% end %>
+
     
     </div>
 

@@ -77,6 +77,7 @@ module CityHelper
 
   def experienceoptions
     [
+      ['', nil],
       ['Amateur'],
       ['Beginner'],
       ['Intermediate'],
@@ -85,4 +86,36 @@ module CityHelper
    
     ]
 end
+
+def interestoptions
+  [
+    
+    ['', nil],
+    ['Cricket'],
+    ['Football (Turf)'],
+    ['Football (Field)'],
+    ['Volleyball'],
+    ['Basketball'],
+    ['Tennis'],
+    ['Table Tennis'],
+    ['Badminton'],
+    ['Hockey'],
+    ['Squash'],
+    ['Boxing'],
+    ['Wrestling'],
+    ['Judo'],
+    ['Karate'],
+    ['Taekwondo'],
+    ['Mixed Martial Arts'],
+    ['Jiu-Jutsu'],
+    ['Kick Boxing'],
+    ['Zumba'],
+    ['Swimming'],
+    ['Marathon'],
+    ['Dancing'],
+    
+ 
+  ]
+end
+
 end

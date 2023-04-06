@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :users,only: [:show]
+  resources :users,only: [:destroy,:show]
 
   post 'users/:id/follow', to:"users#follow", as: "follow"
   post 'users/:id/unfollow', to:"users#unfollow", as: "unfollow"

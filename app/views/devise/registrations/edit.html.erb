@@ -92,16 +92,18 @@
 <%# Submit button %>
 <div class="flex w-full mt-5">
   <div class="actions border border-black hover:border-blue-600 w-1/3 h-9 mr-5 rounded-lg flex justify-center items-center hover:scale-90 duration-300 bg-blue-600 text-white">
-    <%= f.submit "Update" %>
+  
+    <%= f.submit "Update" %></div>
   </div>
 
 
 <%# Account Cancellation Button %>
-<div class="w-1/3"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete ,class:"b  w-full h-9 rounded-lg hover:scale-90 duration-300 bg-red-600 text-white" %></div>
-</div>
+
 <% end %>
 
 <%# <h3>Cancel my account</h3> %>
+
+<div class="px-5 py-2 border font-xs rounded-md  w-[338px] h-9 mt-5 mb-10 flex justify-center items-center  h-10 border-black border-blue-600 hover:scale-90 duration-300 bg-red-600 text-white"><%= button_to "Cancel my account", user_path(current_user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 
 <%# <%= link_to "Back", :back %> 

@@ -1,7 +1,10 @@
 <div class="items-center  justify-between flex w-screen">
 
-  <div class="items-center justify-between flex  w-screen">
-    <% @users.each do |user|%>
+  <div class="items-center justify-between flex flex-col  w-screen">
+
+  <% if @user_names.any? %>
+
+    <% @user_names.each do |user|%>
 
     <% if current_user.id != user.id %>
          
@@ -12,9 +15,9 @@
       <div class="flex">
       <div class="flex w-32 h-32 p-4  rounded-full">
         <% if user.image.attached? %>
-             <%= image_tag(user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full");%>
+             <%= link_to image_tag(user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(user.id);%>
         <% else%>
-          <%= image_tag "account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full";%>
+          <%=  link_to image_tag("account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(user.id);%>
       <% end %>
       </div>
 
@@ -40,6 +43,11 @@
 
       <% end %>
 
+
+  <% end %>
+  <% else%>
+                 
+            <div class="text-center mt-10"> No Search Results ! Check your query and try again.</div>
 
   <% end %>
 </div>

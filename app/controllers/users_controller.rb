@@ -5,6 +5,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+  
+
+  # To delete the account
+  def destroy
+    @user = current_user
+    # @user.interests.clear
+    @user.destroy
+    flash[:success] = "Your account has been deleted."
+    redirect_to root_path
+  end
 
   def follow
     current_user.send_follow_request_to(@user)
