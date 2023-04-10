@@ -1,0 +1,6 @@
+<div>
+<%= form_with(model: [@single_room, @message], remote: true,class:"flex items-center justify-center") do |f| %>
+<%= f.text_field :body, id: "chat-text" , class:"h-10 w-[550px] rounded-md hover:border-blue-600 ", autocomplete: 'off' %>
+    <%= f.submit "Send", data: {disable_with: false},  class:"flex border border-black w-36 h-10 items-center justify-center m-8 rounded-md bg-white hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white "%>
+<% end %>
+</div>

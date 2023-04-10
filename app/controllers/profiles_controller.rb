@@ -11,7 +11,12 @@ class ProfilesController < ApplicationController
     if @experience == ""
     # ----------------------------------------------------------------------
 
-        @user_names = User.where("name LIKE ?", "%#{@query}%")
+        @user_names = User.where("name LIKE ? AND city = ?", "%#{@query}%","#{@current.city}")
+
+
+        if @query == ""
+          @user_names=[]
+        end
 
     # ------------------------------------------------------------------
 
@@ -27,7 +32,9 @@ class ProfilesController < ApplicationController
 
         @user_ids.each do |id|
           @user=User.find(id)
-          @user_names.append(@user)
+          if @user.city == @current.city
+               @user_names.append(@user)
+          end
         end
     end
 

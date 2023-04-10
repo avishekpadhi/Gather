@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+         scope :all_except, ->(user){where.not(id: user)}
+         after_create_commit {broadcast_append_to "users"}
+         has_many :messages
+
          validates :contact_number, presence: true, format: { with: /\A\+91\d{10}\z/, message: "must be a Indian phone number" }
 
 
@@ -17,9 +22,6 @@ class User < ApplicationRecord
             followerable_relationships.where(followable_id: user.id).destroy_all
          end
 
-         def follow_request_accepted_by(record)
-            puts(record,"accepted the request")
-         end
 
          def age
             now = Time.now.utc.to_date

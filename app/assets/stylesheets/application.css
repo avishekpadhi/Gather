@@ -46,6 +46,16 @@
     /* margin-left: 20px; */
 }
 
+#messagebody {
+    word-wrap: break-word;
+    width: fit-content;
+    max-width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+
 
 ::-webkit-scrollbar {
     display: none;

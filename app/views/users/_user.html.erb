@@ -1,0 +1,17 @@
+<div class="w-full h-32 flex items-center justify-between pl-16  border-b-2 border-slate-200">
+
+    <div class="flex justify-evenly items-center">
+
+    <div class="flex w-20 h-20 p-2  rounded-full">
+                
+        <% if user.image.attached? %>
+            <%=link_to image_tag(user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(user.id);%> 
+        <% else%>
+            <%=link_to  image_tag("account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full"),user_path(user.id);%>
+        <% end %>
+                
+    </div>
+
+    <div class="font-bold"><%= link_to user.name,"/users/#{user.id}/message"%></div>
+    </div>
+</div>

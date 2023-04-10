@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  
   get 'search', to: 'profiles#search'
   get '/followrequests', to: 'profiles#followrequests'
   resources :interests
+
+  resources :rooms, except: [:show] do
+    resources :messages
+  end
   
   devise_for :users,controllers: {
     registrations: 'users/registrations',
@@ -18,6 +23,8 @@ Rails.application.routes.draw do
 
 
   end
+  get 'users/:id/message', to: 'users#showmessage', as: 'usermessage'
+
 
   resources :users,only: [:destroy,:show]
 
