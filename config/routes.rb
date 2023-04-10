@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'search', to: 'profiles#search'
+  get '/notif', to: 'profiles#acceptnotif'
   get '/followrequests', to: 'profiles#followrequests'
   resources :interests
 

@@ -22,6 +22,10 @@ class User < ApplicationRecord
             followerable_relationships.where(followable_id: user.id).destroy_all
          end
 
+         # def follow_request_accepted_by_someone(record);
+         #    puts(record)
+         # end
+
 
          def age
             now = Time.now.utc.to_date

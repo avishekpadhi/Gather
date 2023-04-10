@@ -24,6 +24,11 @@
         <%= button_to "Unfriend",unfollow_path(@user),class:"flex border  w-48 h-10 rounded-md bg-black text-white hover:scale-90 duration-300 hover:bg-red-600 hover:text-white flex items-center justify-center mt-10"%>
     <% elsif current_user.sent_follow_request_to?(@user)%>
         <%= button_to "Cancel Friend Request",cancel_path(@user),class:"flex border  w-48 h-10 rounded-md bg-black text-white hover:scale-90 duration-300 hover:bg-red-600 hover:text-white flex items-center justify-center mt-10"%>
+    <% elsif @user.sent_follow_request_to?(current_user)%>
+        <div class="flex mt-4">
+                    <%= button_to "Accept",accept_path(@user),class:"border border-black text-white px-3 py-2 rounded bg-blue-500 hover:scale-90 duration-200 "%>
+                    <%= button_to "Decline",decline_path(@user),class:"mr-5 ml-3 border border-black bg-red-600 text-white px-3 py-2 rounded  hover:scale-90 duration-200 "%>
+        </div>    
     <% else %>
         <%= button_to "Add Friend",follow_path(@user),class:"flex border  w-48 h-10 rounded-md bg-black text-white hover:scale-90 duration-300 hover:bg-blue-600 hover:text-white flex items-center justify-center mt-10"%>
     <% end %>

@@ -24,12 +24,13 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: "Room not found"
     end
   end
+
   
 
   # To delete the account
   def destroy
     @user = current_user
-    # @user.interests.clear
+    @user.interests.destroy_all
     @user.destroy
     flash[:success] = "Your account has been deleted."
     redirect_to root_path
@@ -48,6 +49,16 @@ class UsersController < ApplicationController
 
   def accept
     current_user.accept_follow_request_of(@user)
+
+    store=@user.store
+    if store.length < 10
+      store.push(current_user.id)
+    else
+      store.shift
+      store.push(current_user.id)
+    end
+    @user.update(store: store)
+      
     make_it_a_friend_request
     
     redirect_to user_path(@user)

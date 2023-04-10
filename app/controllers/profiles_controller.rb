@@ -45,4 +45,12 @@ class ProfilesController < ApplicationController
   def followrequests
     @current=current_user.follow_requests
   end
+  def acceptnotif
+    @notif_users=[]
+    @notif=current_user.store
+    @notif.each do |notif|
+      @user=User.find(notif)
+      @notif_users.append(@user)
+    end
+  end
 end
