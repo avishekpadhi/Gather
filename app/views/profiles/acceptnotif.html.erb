@@ -1,4 +1,6 @@
 <div class="w-screen ">
+
+<% if @notif_users.any? %>
 <% @notif_users.reverse_each  do |user|%>
     <div class="border border-black w-1/2 rounded-md m-auto mt-5 flex items-center justify-evenly  ">
 
@@ -16,4 +18,9 @@
 
     </div>
 <% end %>
+<% else%>
+                 
+            <div class="text-center mt-10 "> No new Notifications.</div>
+
+  <% end %>
 </div>

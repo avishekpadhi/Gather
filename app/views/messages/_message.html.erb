@@ -1,20 +1,10 @@
-<div class="cont-<%=message.user.id%> h-fit max-w-[50%]  w-fit py-1 px-3  rounded-md mb-3 bg-slate-200 text-black  ">
+<div class="cont-<%=message.user.id%> h-fit max-w-[50%]  w-fit py-1 px-3 pr-3 border border-black rounded-md mb-3  text-black  ">
     <div class="message-box msg-<%= message.user.id %> flex items-center w-fit max-w-full ">
-
-    <div class="flex w-12 h-12 p-2 min-h-[50px] min-w-[50px] max-h-[50px] max-w-[50px]">
-                
-                    <% if message.user.image.attached? %>
-                        <%= image_tag(message.user.image,class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full");%> 
-                    <% else%>
-                        <%= image_tag("account.jpg",class:"flex object-cover w-auto h-auto min-h-full min-w-full max-h-full  max-w-full rounded-full");%>
-                    <% end %>
-                
-    </div>
     
     <% unless message.room.is_private %>
         <h6 class="name"><%= message.user.email %></h6>
     <% end %>
 
-    <div class="max-w-[70%] w-fit break-words  " id="messag4ebody"><%= message.body %></div>
+    <div class="max-w-full px-2 w-fit whitespace-normal break-words truncate  " id="messag4ebody"><%= message.body %></div>
     </div>
 </div>
