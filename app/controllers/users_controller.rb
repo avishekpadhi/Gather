@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :set_user
   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
   end
@@ -11,6 +12,17 @@ class UsersController < ApplicationController
         @user=User.find(params[:id])
         # user_id = 
         @users = User.all_except(current_user)
+        @followers = current_user.followers
+        @q = params[:q]
+
+        if @q.present?
+          puts(@q)
+           
+            @followers = @followers.where("name LIKE ?", "%#{@q}%")
+            puts (@followers)
+        
+        end
+        
 
         @room=Room.new
         @rooms=Room.public_rooms

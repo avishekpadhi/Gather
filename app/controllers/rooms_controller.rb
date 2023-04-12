@@ -8,6 +8,24 @@ class RoomsController < ApplicationController
 
     # @single_room=Room.find(params[:id])
     @users = User.all_except(current_user)
+
+    @followers = current_user.followers
+        @q = params[:q]
+
+        if @q.present?
+          puts(@q)
+           
+            @followers = @followers.where("name LIKE ?", "%#{@q}%")
+            puts (@followers)
+        
+        end
+    
+
+   
+    # @q = @followerss.ransack(params[:q])
+    # @followers = @q.result(distinct: true)
+    
+
     render 'index'
 
   end
