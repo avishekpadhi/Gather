@@ -1,0 +1,8 @@
+<% if @cities.present? %>
+    <%= turbo_stream.replace "city_list" do %>
+        <div class="field my-3 w-1/2 ml-2" id="city-list">
+            <%= f.label :city %><br />
+            <%= f.select :city, User.cities,{include_blank: true},class:"border border-black w-3/4 " %>
+        </div>
+    <% end %>
+<% end %>

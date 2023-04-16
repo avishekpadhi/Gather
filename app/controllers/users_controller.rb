@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   # To delete the account
   def destroy
     @user = current_user
-    @user.interests.destroy_all
     @user.destroy
     flash[:success] = "Your account has been deleted."
     redirect_to root_path
@@ -84,6 +83,11 @@ class UsersController < ApplicationController
   def cancel
     current_user.remove_follow_request_for(@user)
     redirect_to root_path
+  end
+
+  def fetch_country_states
+    @states = CS.states(:IN)
+    @cities = CS.cities(state)
   end
 
 

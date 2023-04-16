@@ -20,14 +20,17 @@ Rails.application.routes.draw do
 
     get "signin" => 'devise/sessions#new'
     delete "signout" => 'devise/sessions#destroy'
+    
 
 
 
   end
   get 'users/:id/message', to: 'users#showmessage', as: 'usermessage'
+  post '/users/:id', to: 'users#destroy'
 
 
   resources :users,only: [:destroy,:show]
+  
 
   post 'users/:id/follow', to:"users#follow", as: "follow"
   post 'users/:id/unfollow', to:"users#unfollow", as: "unfollow"

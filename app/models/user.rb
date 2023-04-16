@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
          scope :all_except, ->(user){where.not(id: user)}
          after_create_commit {broadcast_append_to "users"}
-         has_many :messages
+         has_many :messages, dependent: :destroy
 
          validates :contact_number, presence: true, format: { with: /\A\+91\d{10}\z/, message: "must be a Indian phone number" }
 
@@ -26,6 +26,16 @@ class User < ApplicationRecord
             [ "email","name"]
           end
 
+         
+         def self.states
+            CS.states(:IN)
+         end
+      
+         def self.cities
+            CS.cities(state, :IN ) || []
+         end
+
+
          # def follow_request_accepted_by_someone(record);
          #    puts(record)
          # end
@@ -38,6 +48,6 @@ class User < ApplicationRecord
             age_in_years
           end
 
-         has_one_attached :image, :dependent => :destroy
+         has_one_attached :image, dependent: :destroy
          # follow_request_accepted_by_someone :follow_request_accepted_by
 end
