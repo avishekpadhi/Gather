@@ -38,11 +38,25 @@
     <%= render "layouts/navbar"%>
  
     <main class="">
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> 
+    <% if !content_for?(:skip_flash_messages) %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p> 
+    <% end %>
        
       <%= yield %>
     </main>
+    <script>
+        selected = document.getElementById("signup");
+        selected_input = document.getElementById("selected_input")
+        selected_input.addEventListener('change',(event)=>{
+          if (event.target.value){
+              console.log(event.target.value)
+              selected.submit()
+          }
+
+
+        })
+
+    </script>
   </body>
 </html>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :likes, only: [:create, :destroy]
+  resources :posts 
+    resources :comments
+  # end
   
   get 'search', to: 'profiles#search'
   get '/notif', to: 'profiles#acceptnotif'

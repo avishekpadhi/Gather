@@ -13,10 +13,10 @@ class RoomsController < ApplicationController
         @q = params[:q]
 
         if @q.present?
-          puts(@q)
+          # puts(@q)
            
             @followers = @followers.where("name LIKE ?", "%#{@q}%")
-            puts (@followers)
+            # puts (@followers)
         
         end
     

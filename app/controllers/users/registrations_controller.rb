@@ -4,6 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  
+
+
 
   
 
@@ -16,9 +19,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # debugger
+    user_params = params[:user][:state]
+    @selected_state= user_params
+    super
+  end
 
   # # GET /resource/edit
   # def edit

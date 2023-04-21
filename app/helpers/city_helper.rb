@@ -87,6 +87,7 @@ module CityHelper
     ]
 end
 
+
 def interestoptions
   [
     

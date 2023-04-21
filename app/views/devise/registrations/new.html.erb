@@ -1,5 +1,7 @@
+<% content_for :skip_flash_messages do %>
+  <%# This block is intentionally left blank %>
+<% end %>
 <%# <h2>Sign up</h2> %>
-
 
 <%# Form Page Structure %>
 <div class="flex flex-row w-screen h-screen bg-gray-100 items-center justify-evenly">
@@ -11,7 +13,8 @@
 
 <%# Form Structure on the right side of the page %>
 <div class="flex flex-col w-2/3 items-center justify-center ">
-<%= form_for(resource, :html => { :style => 'width:400px;' }, as: resource_name, url: registration_path(resource_name)) do |form| %>
+<%= form_for(resource, :html => { :style => 'width:400px;',id:"signup" }, as: resource_name, url: registration_path(resource_name)) do |form| %>
+<h1><%= @selected_state %></h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   
@@ -38,14 +41,15 @@
 
 <div class="flex" data-controller="countries">
 
-        <%= form.button "Validate",formaction:"", formmethod: :get,data: {countries_target:"remoteBtn"} %>
+        <%#= form.button "Validate",formaction:"", formmethod: :get,data: {countries_target:"remoteBtn"} %>
 
         <div class="field my-3 w-1/2">
                   <%= form.label :state %><br />
-                  <%#= form.select :state,options_for_select(CS.states(:in)) ,{include_blank: true}, { data: { action: "change->countries#autosubmit" } } %>
+                  <%= form.select :state,options_for_select(CS.states(:in).invert) ,{include_blank: true}, id:"selected_input"%>
+                  <%#= form.select :state, options_for_select(CS.states(:in)), onchange: 'form.submit();' %>
 
 
-                  <%= form.select :state,options_for_select(states),{include_blank: true}, { data: { controller: "countries" } } %>
+                  <%#= form.select :state,options_for_select(states),{include_blank: true}, { data: { controller: "countries" } } %>
                   
         </div>
 
@@ -54,7 +58,7 @@
             <%#= form.select :city,options_for_select(CS.cities(params[:state], :in) || []),class:"border border-black w-3/4 " %>
             
 
-            <%= form.select :city, options_for_select(cities),{include_blank: true},class:"border border-black w-3/4 " %>
+            <%= form.select :city,options_for_select(@selected_state.present? ? (CS.cities(@selected_state, :in)) : [['No options available', '']]), { include_blank: true },class:"border border-black w-3/4 ", id:"select_city" %>
         </div>
 </div>
 
@@ -98,7 +102,14 @@
 </div>
 </div>
 
-
+<script>
+ const selectElement = document.getElementbyId('select_state')
+selectElement.addEventListener('change', (event) => {
+    const selectedValue = event.target.value;
+    <% @my_instance_variable %>= selectedValue.to_json
+    // This updates the @my_instance_variable instance variable in Ruby with the selected value from the form.
+  });
+</script>
 
 
 
