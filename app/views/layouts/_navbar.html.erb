@@ -1,6 +1,6 @@
 <nav class="h-16 bg-black flex items-center justify-between">
     <div class="flex h-14  w-28 items-center justify-center ml-20">
-    <%= link_to root_path do %>
+    <%= link_to feed_path do %>
         <%= image_tag "gather-logo.png",class:"object-contain" %>
     <% end %>
     </div>
@@ -40,6 +40,15 @@
         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
         </svg>
     <% end %> 
+
+    <%= link_to root_path do %>
+    <div class=" ml-10 my-auto">
+                        <% if current_user.image.attached?%>
+                            <%= image_tag(current_user.image,class:"flex object-cover w-10 h-10  rounded-full border-2 border-blue-600 ");%>
+                        <% else%>
+                            <%= image_tag "account.jpg",class:"flex object-cover w-10 h-10  rounded-full border-2 border-blue-600";%>
+                        <% end %>
+                        </div><% end %> 
 
 </div>
    <% end %>  

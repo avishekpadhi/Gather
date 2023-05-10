@@ -47,15 +47,34 @@
     </main>
     <script>
         selected = document.getElementById("signup");
+        console.log(selected)
         selected_input = document.getElementById("selected_input")
-        selected_input.addEventListener('change',(event)=>{
-          if (event.target.value){
+        errorblock = document.getElementById("error_explanation");
+        selected_input.addEventListener('change',(event)=>{         
+          if (event.target.value){       
               console.log(event.target.value)
-              selected.submit()
+              console.log(errorblock,"ha")
+              selected.submit() 
           }
-
-
         })
+
+        update = document.getElementById("update");
+        updated_input = document.getElementById("user_state")
+        
+        console.log(update)
+
+        updated_input.addEventListener('change',(event)=>{         
+          if (event.target.value){       
+              console.log(event.target.value)
+              
+              update.submit() 
+          }
+        })
+
+        
+
+        
+
 
     </script>
   </body>

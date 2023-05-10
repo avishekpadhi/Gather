@@ -21,20 +21,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # # POST /resource
   def create
     # debugger
+
+    @user=params[:user]
+    @username=params[:user][:name]
     user_params = params[:user][:state]
     @selected_state= user_params
+    # random_string = SecureRandom.alphanumeric(8)s
+
+   
     super
   end
 
   # # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    
+    # @user=current_user
+    # user_params = params[:state]
+    # @selected_state= user_params
+    super
+  end
 
   # # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    # debugger
+    @user=params[:user]
+    user_params = params[:user][:state]
+    @selected_state= user_params
+    super
+  end
 
   # # DELETE /resource
   # def destroy

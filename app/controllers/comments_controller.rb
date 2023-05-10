@@ -22,17 +22,12 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    
     @comment.user_id = current_user.id
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment.post, notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    @post=@comment.post
+    @comment.save
+    update_comment
+    
   end
 
   # PATCH/PUT /comments/1 or /comments/1.json
@@ -68,4 +63,19 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:body, :user_id, :post_id)
     end
+
+    def update_comment
+      render turbo_stream:
+      turbo_stream.replace("comments_#{@post.id}",
+        partial: "comments/commentbox",
+        locals: { comment: @comment, post: @post }
+      )
+    
+      turbo_stream.replace("post_comments_#{@post.id}",
+            partial: "comments/postcommentbox",
+            locals: { comment: @comment, post: @post }
+          )
+        
+    end
+    
 end

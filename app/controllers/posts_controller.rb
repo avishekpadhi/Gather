@@ -9,21 +9,37 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @comment=@post.comments.build
+    
+    # update_comment
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @current=current_user
+    @interest=[]
+    @current.interests.each do |interest|
+      @interest.append(interest.name)
+    end
+
+
   end
 
   # GET /posts/1/edit
   def edit
+    @current=current_user
+    @interest=[]
+    @current.interests.each do |interest|
+      @interest.append(interest.name)
+    end
   end
 
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    
+
 
     respond_to do |format|
       if @post.save
@@ -68,6 +84,16 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       # @post.user_id = current_user.id
-      params.require(:post).permit(:user_id, :image, :caption)
+      params.require(:post).permit(:user_id, :image, :caption, :category)
+    end
+
+    def update_comment
+      render turbo_stream:
+    
+      turbo_stream.replace("post_comments_#{@post.id}",
+            partial: "comments/commentbox",
+            locals: { comment: @comment, post: @post }
+          )
+        
     end
 end

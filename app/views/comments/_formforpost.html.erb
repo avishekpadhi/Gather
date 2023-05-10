@@ -27,6 +27,16 @@
   </div>
 
   <div class="invisible">
-    <%= form.submit class: "rounded-lg bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg bg-blue-600 text-white inline-block font-medium cursor-pointer", id:"submitBtn" %>
   </div></div>
 <% end %></div>
+
+
+<script>
+submitBtn=document.getElementById("submitBtn")
+submitBtn.addEventListener('click',(event)=>{         
+          location.reload()
+        })
+
+
+</script>

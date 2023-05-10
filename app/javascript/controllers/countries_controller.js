@@ -7,12 +7,7 @@ export default class extends Controller {
     console.log("Connected")
     
   }
-  autosubmit(event){
-    
-
-    // const selectedState=this.element.options[this.element.selectedIndex]
-    console.log(event)
-    // const city=document.getElementById("select_city").children=
+  addOne() {
     
   }
 }

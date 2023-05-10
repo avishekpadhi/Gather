@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts=Post.where("user_id LIKE ?", "%#{@user.id}%")
+    @state=@user.state
+    @hash = CS.states(:in)
+    @userstate=@hash[@state]
   end
 
   def showmessage

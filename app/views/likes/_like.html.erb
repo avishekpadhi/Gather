@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "likes_#{post.id}" do %>
+<div class="mt-3  flex flex-row  pb-2 border-inherit items-center" data-controller="countries"> 
+                <% like = current_user.likes.find_by(post: post)%>
+                
+                <% if like.nil? %>
+                    <%= button_to "Like", likes_path, params:{like: {post_id: post.id}},method: :post,class:"border py-1 px-5 bg-white text-blue-600 border-blue-600 hover:scale-90 duration-300 hover:border-red-600 hover:text-red-600  rounded" %>
+                <% else %>
+                    <%= button_to "Unlike", like_path(like),method: :delete,class:"border py-1 px-5 bg-white text-blue-600 border-blue-600 hover:scale-90 duration-300 hover:border-red-600 hover:text-red-600 rounded" %>  
+                <% end %>
+
+                
+                    <%#= render "likes/like", like: like, post: post%>
+                    <span class="font-bold ml-5 " ><%= post.likes.count%></span>
+                
+                
+                <span class="font-bold ml-1">Likes </span></div><% end %>

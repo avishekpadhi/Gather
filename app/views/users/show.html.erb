@@ -1,3 +1,4 @@
+<%= console %>
 <% if user_signed_in? %> 
 <div class="h-screen max-w-screen bg-gray-100 flex justify-around items-center">
 
@@ -60,7 +61,8 @@
 
 
 <%# User Address %>
-  <%= @user.area  %> <%= @user.city  %>, <%= @user.state  %></div> 
+  <%= @user.area  %> <%= @user.city  %>, <%= @hash[@state.to_sym]
+ %><%#= CS.state_name(@userparams)  %></div> 
 
 
 <%# Hard coded values for age and bio. I will finish this part %>
@@ -106,6 +108,35 @@
   <% end %>
 </div>
 
+</div>
+<div class="h-fit max-w-screen bg-slate-100 pb-20 ">
+<h1 class="text-4xl font-bold  ml-64 mb-10"> Posts </h1>
+<div class=' flex flex-col items-center justify-center my-2 grid grid-cols-3 pl-5 max-w-[75%] mx-auto gap-x-6  gap-y-8  '>
+ <% @posts.each do |post| %>
+
+    <div class="flex items-center justify-center group flex-col  hover:scale-105 duration-300 ">
+    <div class="">
+
+    <% if post&.image.attached?%>
+        <%= link_to post_path(post) do %>
+        <%= image_tag(post.image,class:"flex object-cover w-72 h-72 ");%><% end %>
+    <% else%>
+        <%= link_to post_path do %>
+        <%= image_tag "account.jpg",class:"flex object-cover w-72 h-72";%><% end %>
+    <% end %>
+    </div>
+
+    <div class="collapse group-hover:visible flex flex-col justify-start items-start w-72    rounded-b bg-black text-white pb-2">
+    <p class="flex justify-start items-start ml-6 mt-2 font-bold"><%= post&.likes.count %> Likes </p>
+    
+
+    <p class=" flex justify-start items-start w-full ml-6 mt-2 "> <span class="mr-2 font-bold bg-"><%= post&.user.name  %></span><%= post&.caption%></p>
+    </div>
+    </div>
+
+ <% end %> 
+
+</div>
 </div>
 
 

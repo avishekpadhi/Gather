@@ -1,6 +1,6 @@
 
 
-<%= form_with(model: interest, class: "contents") do |form| %>
+<%= form_with(model: interest, class: "contents w-full") do |form| %>
   <% if interest.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(interest.errors.count, "error") %> prohibited this interest from being saved:</h2>
@@ -13,14 +13,14 @@
     </div>
   <% end %>
 
-  <div class="my-5 w-1/2">
+  <div class="my-5 w-full">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <span class="ml-5"><%= form.select :name, options_for_select(interestoptions), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-96" %></span>
   </div>
 
   <div class="my-5 w-1/2">
     <%= form.label :experience %>
-    <%= form.select :experience, options_for_select(experienceoptions), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+     <span class="ml-5"><%= form.select :experience, options_for_select(experienceoptions), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %></span>
   </div>
 
   <div class="inline">

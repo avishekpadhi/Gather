@@ -1,0 +1,12 @@
+
+<%= turbo_frame_tag "comments_#{post.id}" do %>
+               
+                <div class=" overflow-y-scroll h-fit min-h-fit max-h-32 mt-2 no" id="comments" >
+                    <% post.comments.each do |comment|%>
+                        
+                            <%= render "comments/comment", comment: comment%>
+                        
+                    <% end %>
+                    
+                </div>
+<% end %>

@@ -10,6 +10,19 @@ class User < ApplicationRecord
          has_many :messages, dependent: :destroy
 
          validates :contact_number, presence: true, format: { with: /\A\+91\d{10}\z/, message: "must be a Indian phone number" }
+         # validates :city, presence: true
+
+         # validate :skip_email_validation_if_name_is_blank
+
+         def skip_email_validation_if_city_is_blank
+           if city.blank?
+             self.email = nil
+             self.password = nil
+             self.password_confirmation = nil
+             self.contact_number = nil
+             self.name = nil
+           end
+         end
 
 
          has_many :interests, dependent: :destroy
